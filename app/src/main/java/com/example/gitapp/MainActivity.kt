@@ -3,37 +3,24 @@ package com.example.gitapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.gitapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
+    var counter = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.buttonCount.setOnClickListener {
+            count()
+        }
 
-        Log.d("MainActivity", "On Create");
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("MainActivity", "On Start")
+    private fun count() {
+        counter++
+        binding.number.text = counter.toString()
     }
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("MainActivity", "On resume")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("MainActivity", "On pause")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("MainActivity", "On stop")
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("MainActivity", "On destroy")
-    }
 }
